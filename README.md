@@ -1,7 +1,9 @@
 # Шифрование
 Реализована программа, которая шифрует/дешифрует тексты на латинице. 
 Программа выполняет следующие команды:
-##Шифрование 
+
+##Шифрование
+ 
 ###python3 encryptor.py encode --cipher {caesar, vigenere, vernam} --key {number(caesar)| word(vigenere, vernam)} [--input-file input.txt] [--output-file output.txt]
  
  Зашифровать входное сообщениею Аргументы:
@@ -15,6 +17,7 @@
    (необязательный аргумент) - путь к файлу, в который надо записать расшифрованный текст. Если не указан, текст выводится в консоль.
       
 ##Дешифрование
+
 ###python3 encryptor.py encode --cipher {caesar, vigenere, vernam} --key {number(caesar)| word(vigenere, vernam)} [--input-file input.txt] [--output-file output.txt] 
 
 Расшифровать входное сообщение, зная шифр и клч, с которым оно было зашифровано. Аргументы:
@@ -28,6 +31,7 @@
    (необязательный аргумент) - путь к файлу, в который надо записать расшифрованный текст. Если не указан, текст выводится в консоль.
    
 ##Взлом
+
 ###python3 encryptor.py hack [--input-file input.txt] [--output-file output.txt]
    Попытаться расшифровать текст. Аргументы:
 - --input-file.

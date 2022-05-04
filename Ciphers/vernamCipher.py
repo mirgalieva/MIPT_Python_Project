@@ -1,40 +1,45 @@
 import string
+from Ciphers.Cipher import Cipher
 
 abc = string.ascii_lowercase
 one_time_pad = list(abc)
 
 
-class VernamCipher:
-    @classmethod
-    def __init__(self, key='fortification'):
-        self.key = [k.upper() for k in key]
+class VernamCipher(Cipher):
+    shift: string
 
-    @classmethod
-    def encode(self, arguments):
-        text = arguments['input_text'].lower
-        key = arguments['key'].lower()
+    def __init__(self, shift='fortification'):
+        self.shift = shift
+
+    def encode(self, text):
+        text = text.lower()
+        key = self.shift.lower()*len(text)
         ciphertext = ''
         for idx, char in enumerate(text):
             charIdx = abc.index(char)
             keyIdx = one_time_pad.index(key[idx])
             cipher = (keyIdx + charIdx) % len(one_time_pad)
             ciphertext += abc[cipher]
-
         return ciphertext
 
-    @classmethod
-    def BackwardText(self, text, key):
-        if text == '' or key == '':
+
+    def BackwardText(self, text, shift):
+        if text == '' or self.shift == '':
             return ''
         text = text.lower()
-        key = key.lower()
+        key = self.shift.lower()
         charIdx = abc.index(text[0])
         keyIdx = one_time_pad.index(key[0])
-
         cipher = (charIdx - keyIdx) % len(one_time_pad)
         char = abc[cipher]
-        return char + self.BackwardText(text[1:], key[1:])
+        return char + self.BackwardText(text[1:], shift[1:])
 
-    @classmethod
-    def decode(self, arguments):
-        return VernamCipher.BackwardText(arguments['input_text'], arguments['key'])
+
+    def decode(self, text):
+        return self.BackwardText(text, self.shift)
+
+
+    def hack(self, arguments) -> None:
+        pass
+
+

@@ -1,2 +1,2 @@
-from encryptorClass import Encryption
-Encryption()
+from encryptorClass import Parser
+Parser()
